@@ -115,23 +115,23 @@ size_t size(It it, Eit const eit)
     return total_cp;
 }
 
-template<typename Ch>
+template<typename Ch, typename Utf = utf_selector_t<Ch>>
 size_t size(Ch const * str)
 {
-    return size<utf_selector_t<Ch>>(str);
+    return size<Utf>(str);
 }
 
-template<typename Ch>
+template<typename Ch, typename Utf = utf_selector_t<Ch>>
 size_t size(std::basic_string<Ch> str)
 {
-    return size<utf_selector_t<Ch>>(str.cbegin(), str.cend());
+    return size<Utf>(str.cbegin(), str.cend());
 }
 
 #if __cpp_lib_string_view >= 201606
-template<typename Ch>
+template<typename Ch, typename Utf = utf_selector_t<Ch>>
 size_t size(std::basic_string_view<Ch> str)
 {
-    return size<utf_selector_t<Ch>>(str.cbegin(), str.cend());
+    return size<Utf>(str.cbegin(), str.cend());
 }
 #endif
 
